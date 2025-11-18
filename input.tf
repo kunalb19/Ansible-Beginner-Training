@@ -48,5 +48,11 @@ variable "instance_count" {
 variable "key_name" {
   description = "SSH key pair name (must exist in AWS)"
   type        = string
-  default = "ansible-t"
+  default     = "ansible-t"
+}
+
+variable "worker_count" {
+  description = "Number of worker instances"
+  type        = number
+  default     = 2
 }
