@@ -1,0 +1,21 @@
+- name: Install Multi pkg Using loop
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install PKG
+      yum:
+        name: "{{ item }}"
+      loop:
+          - httpd
+          - git
+          - tree
+          - mysql
+    - name: Create user
+      user:
+        name: "{{ item }}"
+      loop:
+        - test1
+        - test2
+        - dev
+        - admin
+      tags: add_user

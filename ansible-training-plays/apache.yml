@@ -1,0 +1,14 @@
+- name: deploy web app
+  hosts: web
+  become: yes
+  tasks:
+    - name: install pkg
+      yum:
+        name: httpd
+        state: present
+      tags: web_install
+    - name: remove pkg
+      yum:
+        name: httpd
+        state: absent
+      tags: web_remove

@@ -1,0 +1,9 @@
+- name: Install
+  hosts: web
+  become: yes
+  tasks:  
+   - name: git check
+     yum:
+        name: httpd
+        state: present
+     when: ansible_os_family == "RedHat"

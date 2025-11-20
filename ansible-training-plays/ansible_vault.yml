@@ -1,0 +1,8 @@
+- name: Use Ansible Vault in Playbook
+  hosts: localhost
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: print Secret
+      debug:
+        msg: "Db Password {{ ansible_password }}"

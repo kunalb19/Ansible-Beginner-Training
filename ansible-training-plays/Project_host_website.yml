@@ -1,0 +1,21 @@
+- name: deploys a custom website using Apache
+  hosts: web
+  become: yes
+  tasks:
+    - name: Copy custom website file
+      copy:
+         src: files/index.html
+         dest: /var/www/html/index.html
+         mode: "0644"
+    - name: Deploy Apache config
+      template:
+      src: templates/web.conf.j2
+      dest: /etc/httpd/conf.d/web.conf
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    - name: Start and enable httpd
+      service:
+         name: httpd
+         state: started

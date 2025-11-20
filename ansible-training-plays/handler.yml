@@ -1,0 +1,16 @@
+- name: handler
+  hosts: web
+  vars:
+    pkg: httpd
+  become: yes
+  tasks:
+    - name: Change in Apache config
+      template:
+        src: web.conf.j2
+        dest: /etc/httpd/conf.d/web.conf
+      notify: restart apache
+  handlers:
+    - name: restart apache
+      service:
+          name: httpd
+          state: restarted

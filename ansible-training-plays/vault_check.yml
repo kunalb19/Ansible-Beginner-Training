@@ -1,0 +1,8 @@
+- name: tect vault
+  hosts: localhost
+  vars_files:
+    - appsecrets.yml
+  tasks:
+    - name: Print secret
+      debug:
+        msg: "DB password = {{ db_pass }}"
